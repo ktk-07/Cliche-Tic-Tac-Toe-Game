@@ -1,0 +1,351 @@
+:root{
+    --boxWidth : 200px;
+    --boxHeight : 200px;
+    --primaryColour: rgb(255, 0, 242);
+    --XOheight : calc(var(--boxHeight)*0.9);
+    --XOwidth : calc(var(--boxWidth)*0.9);
+}
+
+body{
+    margin : 0px;
+    padding : 0px;
+}
+
+#main{
+    height:100vh;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 1;
+    transition: opacity 0.5s  ease-out;
+
+}
+
+#playBox{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+
+#gameHeading{
+    font-size: 5rem;
+}
+
+#playBtn::before{
+    transform: scale(0);
+    position:absolute;
+    content: "co-op only";
+    background: white;
+    border: violet 1px solid;
+    color:var(--primaryColour);
+    font-size: 0.60em;
+    width:fit-content;
+    height:70px;
+    top:0px;
+    left:0px;
+    transition: transform 0.2s ease-in,
+                box-shadow 0.2s ease-in;
+}
+
+
+#playBtn:hover::before{
+    transform : scale(1) translate(50%,-131%);
+    box-shadow:11px 7px 17px 5px rgb(107, 104, 104);
+}
+
+
+#playBtn{
+    position:relative;
+    border: none;
+    font-size: 3rem;
+    font-weight: normal;
+    padding:20px 20px;
+    transition: box-shadow 0.3s ease-out ;
+}
+
+#playBtn:hover{
+    box-shadow:11px 7px 17px 5px rgb(107, 104, 104);
+    border : 1px solid rgb(241, 2, 241);
+    cursor: pointer;
+}
+
+
+
+#turnBox{
+    font-size: 36px;
+    font-weight: bold;
+
+}
+
+
+#gameBox{
+    margin:0px;
+    padding:0px;
+    display:grid;
+    justify-content: center;
+    align-content: center;
+    width:600px;
+    grid-template-columns: repeat(3,auto);
+}
+
+#gameBox:hover{
+    cursor: pointer;
+}
+
+.box{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px black;
+    width:var(--boxWidth);
+    height:var(--boxHeight);
+}
+
+#gameSection{
+    height:100vh;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity:0;
+    transition: opacity 0.3s  ease-in;
+}
+
+/*Pre game choosing of Player*/
+
+#preGame{
+    position:fixed;
+    height:100vh;
+    width: 100%;
+    top:0px;
+    left:0px;
+    background: rgb(0,0,0);
+    opacity: 0.9;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 36px;
+    z-index:2;
+    transition: opacity 0.5s ease-out ;
+}
+
+#playerPopUp{
+    border-radius:10px;
+    border: solid black 2px;
+    background-color: white;
+    padding: 10px;
+    height: 300px;
+    width: 550px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#playerPopUp:hover{
+    border: solid var(--primaryColour) 2px;
+    box-shadow: 1px 1px 8px 7.7px whitesmoke;
+}
+
+.player{
+    height: var(--XOheight);
+    width: var(--XOwidth);
+    border:none;
+    background-color: white;
+    font-size:144px;
+}
+
+
+
+.player:hover{
+    background-color: var(--primaryColour);
+    cursor: pointer;
+}
+
+#playerBtns{
+    border: var(--primaryColour) 2px solid;
+    opacity: 1;
+    margin: 0px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+#playerBtns .player:nth-child(1){
+    border-right: black 1px solid;
+}
+
+
+/*The designing of the game*/
+
+#descriptionBox{
+    color:Black;
+}
+
+#gameBox .box:nth-child(3n + 0){
+    border-right: none;
+}
+
+#gameBox .box:nth-child(3n + 1){
+    border-left: none;
+}
+
+#gameBox .box:nth-child(1),
+#gameBox .box:nth-child(2),
+#gameBox .box:nth-child(3){
+    border-top:none;
+}
+
+#gameBox .box:nth-child(n+6){
+    border-bottom:none;
+}
+
+
+/*Usage of really specific css, I understand it but probably better to review
+once in a while*/
+
+.box.x::before,
+.box.x::after,
+.box.o::before,
+.box.o::after{
+    background-color: black;
+}
+
+#gameBox.x .box:not(.x):not(.o):hover::before,
+#gameBox.x .box:not(.x):not(.o):hover::after,
+#gameBox.o .box:not(.x):not(.o):hover:before{
+    background-color: rgb(187, 184, 184);
+}
+
+
+.box.x::before,
+.box.x::after,
+#gameBox.x .box:not(.x):not(.o):hover::before,
+#gameBox.x .box:not(.x):not(.o):hover::after{
+    content:"";
+    position: absolute;
+    align-items: start;
+    height:var(--XOheight);
+    width:25px;
+
+}
+
+.box.x::before,
+#gameBox.x .box:not(.x):not(.o):hover::before{
+    transform:rotate(-45deg);
+}
+.box.x::after,
+#gameBox.x .box:not(.x):not(.o):hover::after{
+    transform:rotate(45deg);
+}
+
+
+.box.o::before,
+.box.o::after,
+#gameBox.o .box:not(.x):not(.o):hover::before,
+#gameBox.o .box:not(.x):not(.o):hover::after{
+    position: absolute;
+    content:"";
+    width:var(--XOwidth);
+    height: var(--XOheight);
+    border-radius: 50%;
+}
+
+.box.o::after,
+#gameBox.o .box:not(.x):not(.o):hover::after{
+    width:calc(var(--XOwidth)*0.69);
+    height: calc(var(--XOheight)*0.69);
+    background-color: white;;
+    z-index:2;
+}
+
+
+/*
+.box:not(.o):hover::before{
+    content: "";
+    position: absolute;
+    height: var(--XOwidth);
+    width: var(--XOheight);
+    border-radius: 50%;
+}
+
+.box:not(.o):hover::after{
+    content: "";
+    position: absolute;
+    height: calc(var(--XOwidth)*0.69);
+    width: calc(var(--XOheight)*0.69);
+    border-radius: 50%;
+    z-index: 2;
+    background-color: white;
+}
+
+#gamebox .box:not(.o):not(.x):hover::before,
+#gamebox .box:not(.o):not(.x):hover::after{
+
+}
+*/
+.box.x,
+.box.o{
+    cursor:not-allowed;
+}
+
+/* Resetting of the game or going back to main menu*/
+#resetGameBox{
+    border-radius:10px;
+    border: solid black 2px;
+    background-color: white;
+    padding: 10px;
+    height: 300px;
+    width: 550px;
+    display:none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#resetGameBox:hover{
+    border: solid var(--primaryColour) 2px;
+    box-shadow: 1px 1px 8px 7.7px whitesmoke;
+}
+
+.funcBtn{
+    height: var(--XOheight);
+    width: var(--XOwidth);
+    border:none;
+    background-color: rgb(80, 79, 79);
+    color:var(--primaryColour);
+    font-size:50px;
+}
+
+
+
+.funcBtn:hover{
+    background-color: white;
+    cursor: pointer;
+}
+
+#reSetSection{
+    border: var(--primaryColour) 2px solid;
+    opacity: 1;
+    margin: 0px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+#reSetSection .funcBtn:nth-child(1){
+    border-right: black 1px solid;
+}
+  
+

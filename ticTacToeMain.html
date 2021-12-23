@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac Toe</title>
+    <link href="ticTacToeStyling.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+    <div id = "main">
+
+        <div id = "playBox">
+            <h1 id="gameHeading"> Tic-Tac-Toe</h1>
+            <button id="playBtn"> Play</button>
+        </div>
+
+    </div>
+
+
+        <section id="gameSection">
+
+            <div id = "inGame">
+
+                <div id= "turnBox">
+                    Player<span id="playerName">?</span>'s Turn
+                </div>
+    
+                <div id= "gameBox">
+                    <div class ="box" data-boxno= "0" ></div>
+                    <div class ="box" data-boxno= "1" ></div>
+                    <div class ="box" data-boxno= "2" ></div>
+                    <div class ="box" data-boxno= "3" ></div>
+                    <div class ="box" data-boxno= "4" ></div>
+                    <div class ="box" data-boxno= "5" ></div>
+                    <div class ="box" data-boxno= "6" ></div>
+                    <div class ="box" data-boxno= "7" ></div>
+                    <div class ="box" data-boxno= "8" ></div>
+    
+                </div>
+
+            </div>
+        
+        </section>
+
+
+        <div id = "preGame" class="overlay">
+
+            <section id = "resetGameBox">
+                <div id ="description1">Wasssupzzzzz</div>
+
+                <div id="reSetSection">
+                    <button id="resetBtn" class = "funcBtn" data-player="X" >RESET</button>
+                    <button id="menuBtn" class = "funcBtn" data-player="O">MAIN MENU</button>
+                </div>
+
+            </section>
+
+            <section id = "playerPopUp">
+                <div id ="descriptionBox">Choose Player</div>
+
+                <div id="playerBtns">
+                    <button id="playerX" class = "player" data-player="X" >X</button>
+                    <button id="playerO" class = "player" data-player="O">O</button>
+                </div>
+
+            </section>
+
+        </div>
+
+
+
+
+
+
+
+    <script src="ticTacToeFunc.js"></script>
+</body>
+</html>
